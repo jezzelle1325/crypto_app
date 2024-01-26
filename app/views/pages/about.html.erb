@@ -1,38 +1,46 @@
-
-
 <div class="container mt-5">
-  <div class="jumbotron text-center">
-    <h1>About the Cryptocurrency Tracker</h1>
-    <p>
-      This application provides up-to-date information on various cryptocurrencies,
-      their market prices, market capitalization, and transaction history. Users
-      can view detailed information about each cryptocurrency and related transactions.
-    </p>
+  <div class="card mb-4">
+    <div class="card-body">
+      <h1 class="card-title text-center">About the Cryptocurrency Tracker</h1>
+      <p class="card-text">
+        This application provides up-to-date information on various cryptocurrencies,
+        their market prices, market capitalization, and transaction history. Users
+        can view detailed information about each cryptocurrency and related transactions.
+      </p>
+    </div>
   </div>
 
   <div class="row">
     <div class="col-md-6">
-      <h2>Data Sources</h2>
-      <p>
-        The data for this application is sourced from the CoinRanking API, which
-        offers comprehensive and up-to-date information on various cryptocurrencies.
-      </p>
+      <div class="card mb-4">
+        <div class="card-body">
+          <h2 class="card-title">Data Sources</h2>
+          <p class="card-text">
+            The data for this application is sourced from the CoinRanking API, which
+            offers comprehensive and up-to-date information on various cryptocurrencies.
+          </p>
+        </div>
+      </div>
     </div>
 
     <div class="col-md-6">
-      <h2>Database Structure</h2>
-      <p>
-        Below is the Entity-Relationship Diagram (ERD) showing the database structure
-        of this application, illustrating how different entities such as Users,
-        Cryptocurrencies, and Transactions are interrelated.
-      </p>
-      <%= image_tag 'crypto.png', alt: 'Cryptocurrency ERD', class: 'img-fluid rounded' %>
+      <div class="card mb-4">
+        <div class="card-body">
+          <h2 class="card-title">Database Structure</h2>
+          <p class="card-text">
+            Below is the Entity-Relationship Diagram (ERD) showing the database structure
+            of this application, illustrating how different entities such as Users,
+            Cryptocurrencies, and Transactions are interrelated.
+          </p>
+          <%= image_tag 'crypto.png', alt: 'Cryptocurrency ERD', class: 'img-fluid rounded' %>
+        </div>
+      </div>
     </div>
   </div>
 
-  <div class="mt-4">
-    <h3 class="text-center">Further Information</h3>
-    <p class="text-center">
+  <div class="text-center mt-4">
+    <h3>Further Information</h3>
+    <p>
       For more details about how this application works or to contribute to its development,
       please visit our GitHub repository or contact the development team.
     </p>

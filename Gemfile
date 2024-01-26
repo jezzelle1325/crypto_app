@@ -32,6 +32,15 @@ gem 'httparty'
 # For Pagination
 gem 'kaminari'
 
+# Bootstrap
+gem 'bootstrap', '~> 5.0'
+
+gem 'sassc', '~> 2.0'
+
+gem 'sassc-rails'
+
+
+# Then run bundle install
 
 # Use Redis adapter to run Action Cable in production
 # gem "redis", ">= 4.0.1"

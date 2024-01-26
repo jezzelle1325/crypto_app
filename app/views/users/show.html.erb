@@ -1,15 +1,19 @@
 <div class="container mt-5">
-  <h1 class="text-center"><%= @user.name %></h1>
-  <div class="mt-4">
-    <p><strong>Email:</strong> <%= @user.email %></p>
+  <h1 class="text-center mb-4"><%= @user.name %></h1>
+  <div class="card mb-4">
+    <div class="card-body">
+      <h5 class="card-title">Profile Details</h5>
+      <p class="card-text"><strong>Email:</strong> <%= @user.email %></p>
+    </div>
   </div>
 
   <h2 class="mt-4">Transactions</h2>
   <ul class="list-group mt-3">
     <% @user.transactions.each do |transaction| %>
-      <li class="list-group-item">
+      <li class="list-group-item d-flex justify-content-between align-items-center">
         <%= transaction.crypto_type.capitalize %> - <%= transaction.amount %> -
         <%= link_to transaction.cryptocurrency.name, cryptocurrency_path(transaction.cryptocurrency) %>
+        <span class="badge bg-primary rounded-pill"><%= transaction.crypto_type.capitalize %></span>
       </li>
     <% end %>
   </ul>
