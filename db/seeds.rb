@@ -21,9 +21,31 @@ if response.success?
     )
 
     # Create 'buy' and 'sell' transactions for each cryptocurrency
-    10.times do
-    cryptocurrency.transactions.create(crypto_type: 'buy', amount: rand(1..10))
-    cryptocurrency.transactions.create(crypto_type: 'sell', amount: rand(1..10))
+    # 10.times do
+    #   cryptocurrency.transactions.create(crypto_type: 'buy', amount: rand(1..10))
+    #   cryptocurrency.transactions.create(crypto_type: 'sell', amount: rand(1..10))
+    # end
+
+    users = User.all.limit(10)
+
+    # Create random users
+    10.times do |i|
+      User.create(
+        name: "User #{i + 1}",
+        email: "user#{i + 1}@example.com"
+      )
+    end
+
+    5.times do
+      user = users.sample # Randomly pick a user
+      transaction_type = ['buy', 'sell'].sample # Randomly choose a type
+      amount = rand(1..100) # Random amount
+
+      cryptocurrency.transactions.create!(
+        user: user,
+        crypto_type: transaction_type,
+        amount: amount
+      )
     end
   end
 else
