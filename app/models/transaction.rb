@@ -1,6 +1,7 @@
 class Transaction < ApplicationRecord
   # Association
   belongs_to :cryptocurrency
+  belongs_to :user
 
   # Validations
   validates :type, presence: true, inclusion: { in: %w[buy sell] }
