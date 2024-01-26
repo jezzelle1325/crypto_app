@@ -1,0 +1,19 @@
+<h1>Cryptocurrencies</h1>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Price</th>
+      <th>Market Cap</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @cryptocurrencies.each do |crypto| %>
+      <tr>
+        <td><%= link_to crypto.name, cryptocurrency_path(crypto) %></td>
+        <td><%= crypto.price %></td>
+        <td><%= crypto.market_cap %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
