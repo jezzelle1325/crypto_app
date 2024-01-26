@@ -7,4 +7,9 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
+
+  root 'cryptocurrencies#index'
+  resources :cryptocurrencies do
+    resources :transactions
+  end
 end
