@@ -38,7 +38,7 @@ if response.success?
 
     5.times do
       user = users.sample # Randomly pick a user
-      transaction_type = ['buy', 'sell'].sample # Randomly choose a type
+      transaction_type = ['Buy', 'Sell'].sample # Randomly choose a type
       amount = rand(1..100) # Random amount
 
       cryptocurrency.transactions.create!(
