@@ -1,8 +1,14 @@
-<h1><%= @cryptocurrency.name %></h1>
-<p>Price: <%= @cryptocurrency.price %></p>
-<p>Market Cap: <%= @cryptocurrency.market_cap %></p>
+<div class="container mt-5">
+  <h1><%= @cryptocurrency.name %></h1>
+  <p>Price: <%= @cryptocurrency.price %></p>
+  <p>Market Cap: <%= @cryptocurrency.market_cap %></p>
 
-<h2>Transactions</h2>
-<% @cryptocurrency.transactions.each do |transaction| %>
-  <p><%= transaction.crypto_type.capitalize %>: <%= transaction.amount %></p>
-<% end %>
+  <h2>Transactions</h2>
+  <% @cryptocurrency.transactions.each do |transaction| %>
+    <div class="card mb-2">
+      <div class="card-body">
+        <p><%= transaction.crypto_type.capitalize %>: <%= transaction.amount %></p>
+      </div>
+    </div>
+  <% end %>
+</div>

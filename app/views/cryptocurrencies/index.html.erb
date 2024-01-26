@@ -1,33 +1,42 @@
+<div class="container mt-5">
+  <%= form_with(url: cryptocurrencies_path, method: :get, local: true, class: "mb-4") do |form| %>
+    <div class="row">
+      <div class="col-md-6">
+        <%= form.label :search, "Search Cryptocurrencies", class: "form-label" %>
+        <%= form.text_field :search, value: params[:search], class: "form-control" %>
+      </div>
 
-<%= form_with(url: cryptocurrencies_path, method: :get, local: true) do |form| %>
-  <%= form.label :search, "Search Cryptocurrencies" %>
-  <%= form.text_field :search, value: params[:search] %>
+      <div class="col-md-6">
+        <div class="form-group">
+          <%= form.label :filter, "Filter by Transaction Type", class: "form-label" %>
+          <%= form.select :filter, ['All', 'Buy', 'Sell'], selected: params[:filter], class: "form-control" %>
+        </div>
+      </div>
 
-  <!-- Search Filter -->
-  <%= form.label :filter, "Filter by Transaction Type" %>
-  <%= form.select :filter, ['All', 'Buy', 'Sell'], selected: params[:filter] %>
+      <div class="col-md-12 mt-2">
+        <%= form.submit "Search", class: "btn btn-primary" %>
+      </div>
+    </div>
+  <% end %>
 
-  <%= form.submit "Search" %>
-<% end %>
-
-<h1>Cryptocurrencies</h1>
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Price</th>
-      <th>Market Cap</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @cryptocurrencies.each do |crypto| %>
+  <h1 class="mt-4">Cryptocurrencies</h1>
+  <table class="table table-striped mt-3">
+    <thead>
       <tr>
-        <td><%= link_to crypto.name, cryptocurrency_path(crypto) %></td>
-        <td><%= crypto.price %></td>
-        <td><%= crypto.market_cap %></td>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Market Cap</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
-<%= paginate @cryptocurrencies %>
-
+    </thead>
+    <tbody>
+      <% @cryptocurrencies.each do |crypto| %>
+        <tr>
+          <td><%= link_to crypto.name, cryptocurrency_path(crypto) %></td>
+          <td><%= crypto.price %></td>
+          <td><%= crypto.market_cap %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <%= paginate @cryptocurrencies %>
+</div>
