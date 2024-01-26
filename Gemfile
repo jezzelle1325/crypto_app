@@ -29,6 +29,10 @@ gem "jbuilder"
 # For HTTPS requests
 gem 'httparty'
 
+# For Pagination
+gem 'kaminari'
+
+
 # Use Redis adapter to run Action Cable in production
 # gem "redis", ">= 4.0.1"
 
