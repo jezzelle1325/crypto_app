@@ -3,7 +3,7 @@
   <%= form.label :search, "Search Cryptocurrencies" %>
   <%= form.text_field :search, value: params[:search] %>
 
-  <!-- Dropdrown for hierarchical criteria -->
+  <!-- Search Filter -->
   <%= form.label :filter, "Filter by Transaction Type" %>
   <%= form.select :filter, ['All', 'Buy', 'Sell'], selected: params[:filter] %>
 
@@ -29,3 +29,5 @@
     <% end %>
   </tbody>
 </table>
+<%= paginate @cryptocurrencies %>
+

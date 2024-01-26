@@ -4,5 +4,5 @@
 
 <h2>Transactions</h2>
 <% @cryptocurrency.transactions.each do |transaction| %>
-  <p><%= transaction.type.capitalize %>: <%= transaction.amount %></p>
+  <p><%= transaction.crypto_type.capitalize %>: <%= transaction.amount %></p>
 <% end %>

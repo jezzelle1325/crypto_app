@@ -8,8 +8,12 @@ class CryptocurrenciesController < ApplicationController
     end
 
     if params[:filter].present? && params[:filter] != 'All'
-      @cryptocurrencies = @cryptocurrencies.joins(:transactions).where(transactions: { type: params[:filter] })
+      @cryptocurrencies = @cryptocurrencies.joins(:transactions).where('transactions.crypto_type' => params[:filter])
     end
+
+
+    # Pagination
+    @cryptocurrencies = @cryptocurrencies.page(params[:page]).per(10)  # 10 Pages
   end
 
   def show
@@ -17,3 +21,4 @@ class CryptocurrenciesController < ApplicationController
   end
 
 end
+

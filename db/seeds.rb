@@ -10,18 +10,35 @@
 
 require 'httparty'
 
-
+# Fetch and create cryptocurrencies from CoinRanking API
 response = HTTParty.get('https://api.coinranking.com/v2/coins', headers: {"x-access-token": "coinrankingea0e28446d13c9aa0c5269fc241c86b64ca9ade634d8d9ef"})
 if response.success?
-
   response['data']['coins'].each do |coin_data|
-    Cryptocurrency.create(
+    cryptocurrency = Cryptocurrency.create(
       name: coin_data['name'],
       price: coin_data['price'],
       market_cap: coin_data['marketCap']
     )
+
+    # Create 'buy' and 'sell' transactions for each cryptocurrency
+    5.times do
+    cryptocurrency.transactions.create(transaction_type: 'buy', amount: rand(1..10))
+    cryptocurrency.transactions.create(transaction_type: 'sell', amount: rand(1..10))
+    end
   end
 else
   puts "Failed to fetch data from CoinRanking API"
 end
+
+
+
+# Cryptocurrency.all.each do |crypto|
+
+#
+#   crypto.transactions.create(crypto_type: 'buy', amount: rand(1..100))
+
+#
+#   crypto.transactions.create(crypto_type: 'sell', amount: rand(1..100))
+
+# end
 
