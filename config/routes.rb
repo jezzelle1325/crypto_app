@@ -8,8 +8,11 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "posts#index"
 
-  root 'cryptocurrencies#index'
-  resources :cryptocurrencies do
+
+    root 'cryptocurrencies#index'
+    resources :cryptocurrencies
     resources :transactions
-  end
+    resources :users
+
+
 end
