@@ -1,5 +1,5 @@
 <h1>Transaction Details</h1>
-<p>Type: <%= @transaction.type.capitalize %></p>
+<p>Type: <%= @transaction.crypto_type.capitalize %></p>
 <p>Amount: <%= @transaction.amount %></p>
 <p>Cryptocurrency: <%= link_to @transaction.cryptocurrency.name, cryptocurrency_path(@transaction.cryptocurrency) %></p>
 <p>User: <%= link_to @transaction.user.name, user_path(@transaction.user) %></p>

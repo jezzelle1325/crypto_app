@@ -5,7 +5,7 @@
 <ul>
   <% @user.transactions.each do |transaction| %>
     <li>
-      <%= transaction.type.capitalize %> -
+      <%= transaction.crypto_type.capitalize %> -
       <%= transaction.amount %> -
       <%= link_to transaction.cryptocurrency.name, cryptocurrency_path(transaction.cryptocurrency) %>
     </li>

@@ -21,9 +21,9 @@ if response.success?
     )
 
     # Create 'buy' and 'sell' transactions for each cryptocurrency
-    5.times do
-    cryptocurrency.transactions.create(transaction_type: 'buy', amount: rand(1..10))
-    cryptocurrency.transactions.create(transaction_type: 'sell', amount: rand(1..10))
+    10.times do
+    cryptocurrency.transactions.create(crypto_type: 'buy', amount: rand(1..10))
+    cryptocurrency.transactions.create(crypto_type: 'sell', amount: rand(1..10))
     end
   end
 else

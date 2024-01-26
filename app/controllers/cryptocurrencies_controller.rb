@@ -1,5 +1,4 @@
 class CryptocurrenciesController < ApplicationController
-
   def index
     @cryptocurrencies = Cryptocurrency.all
 
@@ -8,17 +7,18 @@ class CryptocurrenciesController < ApplicationController
     end
 
     if params[:filter].present? && params[:filter] != 'All'
-      @cryptocurrencies = @cryptocurrencies.joins(:transactions).where('transactions.crypto_type' => params[:filter])
+      @cryptocurrencies = @cryptocurrencies.joins(:transactions)
+                                           .where('transactions.crypto_type' => params[:filter])
+                                           .distinct
     end
 
-
     # Pagination
-    @cryptocurrencies = @cryptocurrencies.page(params[:page]).per(10)  # 10 Pages
+    @cryptocurrencies = @cryptocurrencies.page(params[:page]).per(10)
   end
 
   def show
     @cryptocurrency = Cryptocurrency.find(params[:id])
   end
-
 end
+
 
