@@ -14,6 +14,7 @@ Rails.application.routes.draw do
     resources :cryptocurrencies
     resources :transactions
     resources :users
+    post 'watch_cryptocurrency', to: 'cryptocurrencies#watch', as: :watch_cryptocurrency
 
 
 end

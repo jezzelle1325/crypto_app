@@ -1,11 +1,29 @@
+<!--
+    Name: Jezreelson Sobremonte
+    Course: WEBD-3008 (248294) Full-Stack Web Development
+    Project: Intro to Rails Project
+
+    Cryptocurrencies SHOW
+
+-->
+
 <div class="container mt-5">
   <h1><%= @cryptocurrency.name %></h1>
   <p class="fs-5">Price: <span class="fw-bold"><%= @cryptocurrency.price %></span></p>
   <p class="fs-5">Market Cap: <span class="fw-bold"><%= @cryptocurrency.market_cap %></span></p>
 
+  <%# Check if the cryptocurrency is already being watched by the user %>
+  <% is_watched = @watched_cryptocurrencies.any? { |wc| wc.cryptocurrency_id == @cryptocurrency.id } %>
+
+  <% if is_watched %>
+    <div class="alert alert-info">You are watching this cryptocurrency.</div>
+  <% else %>
+    <%= button_to 'Add to Watch List', watch_cryptocurrency_path(crypto_id: @cryptocurrency.id), method: :post, class: 'btn btn-primary' %>
+  <% end %>
+
   <h2 class="mt-4">Transactions (Filter: <%= @filter || 'All' %>)</h2>
   <div class="row row-cols-1 row-cols-md-2 g-4">
-    <% filtered_transactions = @cryptocurrency.transactions.select { |t| @filter.blank? || @filter == 'All' || t.crypto_type.downcase == @filter.downcase } %>
+    <% filtered_transactions = @cryptocurrency.transactions.includes(:user).select { |t| @filter.blank? || @filter == 'All' || t.crypto_type.downcase == @filter.downcase } %>
     <% if filtered_transactions.empty? %>
       <p>No transactions to display</p>
     <% else %>
@@ -15,6 +33,11 @@
             <div class="card-body">
               <h5 class="card-title"><%= transaction.crypto_type.capitalize %> Transaction</h5>
               <p class="card-text">Amount: <%= transaction.amount %></p>
+              <% if transaction.user %>
+                <p class="card-text">User: <%= link_to transaction.user.name, user_path(transaction.user) %></p>
+              <% else %>
+                <p class="card-text">User: Unknown</p>
+              <% end %>
             </div>
           </div>
         </div>

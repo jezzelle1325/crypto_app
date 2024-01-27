@@ -2,6 +2,8 @@ class Cryptocurrency < ApplicationRecord
   # Association
   has_many :transactions
   has_many :users, through: :transactions
+  has_many :watched_cryptocurrencies
+  has_many :watchers, through: :watched_cryptocurrencies, source: :user
 
   # Validations
   validates :name, presence: true

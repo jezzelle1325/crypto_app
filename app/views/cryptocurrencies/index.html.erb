@@ -1,3 +1,12 @@
+<!--
+    Name: Jezreelson Sobremonte
+    Course: WEBD-3008 (248294) Full-Stack Web Development
+    Project: Intro to Rails Project
+
+    Cryptocurrencies INDEX
+
+-->
+
 <div class="container mt-5">
   <%= form_with(url: cryptocurrencies_path, method: :get, local: true, class: "mb-4") do |form| %>
     <div class="row align-items-center">
@@ -28,7 +37,16 @@
         <p class="card-text">Price: <%= crypto.price %></p>
         <p class="card-text">Market Cap: <%= crypto.market_cap %></p>
 
- <h6 class="mt-2">Transactions (Filter: <%= @filter || 'None' %>)</h6>
+
+        <% watched = crypto.watched_cryptocurrencies.find { |w| w.user_id == @current_user.id && w.interest_level == "Interested" } %>
+        <% if watched %>
+          <p class="text-success">Interested</p>
+        <% else %>
+          <p class="text-muted">Not in your watch list.</p>
+        <% end %>
+
+
+        <h6 class="mt-2">Transactions (Filter: <%= @filter || 'None' %>)</h6>
         <% filtered_transactions = crypto.transactions.select { |t| @filter.blank? || @filter == 'All' || t.crypto_type.downcase == @filter.downcase } %>
         <% if filtered_transactions.empty? %>
           <p>No transactions to display</p>
