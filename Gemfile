@@ -35,6 +35,7 @@ gem 'kaminari'
 # Bootstrap
 gem 'bootstrap', '~> 5.0'
 
+
 gem 'sassc', '~> 2.0'
 
 gem 'sassc-rails'

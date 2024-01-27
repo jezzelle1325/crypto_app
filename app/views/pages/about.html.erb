@@ -1,48 +1,46 @@
 <div class="container mt-5">
-  <div class="card mb-4">
-    <div class="card-body">
-      <h1 class="card-title text-center">About the Cryptocurrency Tracker</h1>
-      <p class="card-text">
-        This application provides up-to-date information on various cryptocurrencies,
-        their market prices, market capitalization, and transaction history. Users
-        can view detailed information about each cryptocurrency and related transactions.
-      </p>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col-md-6">
-      <div class="card mb-4">
-        <div class="card-body">
-          <h2 class="card-title">Data Sources</h2>
-          <p class="card-text">
-            The data for this application is sourced from the CoinRanking API, which
-            offers comprehensive and up-to-date information on various cryptocurrencies.
-          </p>
+    <!-- Intro Section -->
+    <section class="mb-5">
+        <div class="bg-light p-5 rounded-lg shadow">
+            <h1 class="display-4 text-center">Cryptocurrency Tracker</h1>
+            <p class="lead text-center">
+                Stay updated with the latest in cryptocurrencies - prices, market caps, and transaction histories at your fingertips.
+            </p>
         </div>
-      </div>
-    </div>
+    </section>
 
-    <div class="col-md-6">
-      <div class="card mb-4">
-        <div class="card-body">
-          <h2 class="card-title">Database Structure</h2>
-          <p class="card-text">
-            Below is the Entity-Relationship Diagram (ERD) showing the database structure
-            of this application, illustrating how different entities such as Users,
-            Cryptocurrencies, and Transactions are interrelated.
-          </p>
-          <%= image_tag 'crypto.png', alt: 'Cryptocurrency ERD', class: 'img-fluid rounded' %>
+    <!-- Data Source Section -->
+    <section class="mb-5">
+        <div class="card border-primary mb-3">
+            <div class="card-header bg-primary text-white">Data Sources</div>
+            <div class="card-body">
+                <p class="card-text">
+                    Data is dynamically sourced from the CoinRanking API, providing reliable and current information on various cryptocurrencies.
+                </p>
+            </div>
         </div>
-      </div>
-    </div>
-  </div>
+    </section>
 
-  <div class="text-center mt-4">
-    <h3>Further Information</h3>
-    <p>
-      For more details about how this application works or to contribute to its development,
-      please visit our GitHub repository or contact the development team.
-    </p>
-  </div>
+    <!-- Database Structure Section -->
+    <section class="mb-5">
+        <div class="card border-success">
+            <div class="card-header bg-success text-white">Database Structure</div>
+            <div class="card-body">
+                <p class="card-text">
+                    Our robust database structure is visualized below. It includes detailed relationships between Users, Cryptocurrencies, and Transactions.
+                </p>
+                <%= image_tag 'crypto.png', alt: 'Cryptocurrency ERD', class: 'img-fluid rounded' %>
+            </div>
+        </div>
+    </section>
+
+    <!-- Further Information Section -->
+    <section class="mb-5">
+        <div class="bg-info p-4 rounded-lg text-white text-center">
+            <h3>Further Information</h3>
+            <p>
+                Dive deeper into our application's workings or join our development efforts on GitHub. We value community contributions and feedback!
+            </p>
+        </div>
+    </section>
 </div>

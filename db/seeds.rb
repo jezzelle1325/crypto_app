@@ -10,6 +10,17 @@
 
 require 'httparty'
 
+# Create random users
+10.times do |i|
+  User.create(
+    name: "User #{i + 1}",
+    email: "user#{i + 1}@example.com"
+  )
+end
+
+# Fetch the created users
+users = User.all
+
 # Fetch and create cryptocurrencies from CoinRanking API
 response = HTTParty.get('https://api.coinranking.com/v2/coins', headers: {"x-access-token": "coinrankingea0e28446d13c9aa0c5269fc241c86b64ca9ade634d8d9ef"})
 if response.success?
@@ -20,22 +31,7 @@ if response.success?
       market_cap: coin_data['marketCap']
     )
 
-    # Create 'buy' and 'sell' transactions for each cryptocurrency
-    # 10.times do
-    #   cryptocurrency.transactions.create(crypto_type: 'buy', amount: rand(1..10))
-    #   cryptocurrency.transactions.create(crypto_type: 'sell', amount: rand(1..10))
-    # end
-
-    users = User.all.limit(10)
-
-    # Create random users
-    10.times do |i|
-      User.create(
-        name: "User #{i + 1}",
-        email: "user#{i + 1}@example.com"
-      )
-    end
-
+    # Create transactions for each cryptocurrency
     5.times do
       user = users.sample # Randomly pick a user
       transaction_type = ['Buy', 'Sell'].sample # Randomly choose a type

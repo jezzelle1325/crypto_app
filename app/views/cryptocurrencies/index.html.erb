@@ -1,43 +1,52 @@
 <div class="container mt-5">
   <%= form_with(url: cryptocurrencies_path, method: :get, local: true, class: "mb-4") do |form| %>
-    <div class="row gy-2 gx-3 align-items-center">
-      <div class="col-auto">
+    <div class="row align-items-center">
+      <div class="col-md-4 mb-2">
         <%= form.label :search, "Search Cryptocurrencies", class: "col-form-label" %>
         <%= form.text_field :search, value: params[:search], class: "form-control", placeholder: "Enter name..." %>
       </div>
 
-      <div class="col-auto">
+      <div class="col-md-3 mb-2">
         <%= form.label :filter, "Transaction Type", class: "col-form-label" %>
         <%= form.select :filter, ['All', 'Buy', 'Sell'], selected: params[:filter], class: "form-select" %>
       </div>
 
-      <div class="col-auto">
+      <div class="col-md-2">
         <%= form.submit "Search", class: "btn btn-primary" %>
       </div>
     </div>
   <% end %>
 
-  <h1 class="mt-4">Cryptocurrencies</h1>
-  <div class="table-responsive">
-    <table class="table table-striped mt-3">
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Price</th>
-          <th>Market Cap</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @cryptocurrencies.each do |crypto| %>
-          <tr>
-            <td><%= link_to crypto.name, cryptocurrency_path(crypto) %></td>
-            <td><%= crypto.price %></td>
-            <td><%= crypto.market_cap %></td>
-          </tr>
+<h1 class="mt-4">Crypto Currencies</h1>
+  <% @cryptocurrencies.each do |crypto| %>
+    <div class="card mb-3">
+      <div class="card-body">
+        <h5 class="card-title">
+            <%= link_to crypto.name, cryptocurrency_path(crypto, filter: @filter) %>
+        </h5>
+
+        <p class="card-text">Price: <%= crypto.price %></p>
+        <p class="card-text">Market Cap: <%= crypto.market_cap %></p>
+
+ <h6 class="mt-2">Transactions (Filter: <%= @filter || 'None' %>)</h6>
+        <% filtered_transactions = crypto.transactions.select { |t| @filter.blank? || @filter == 'All' || t.crypto_type.downcase == @filter.downcase } %>
+        <% if filtered_transactions.empty? %>
+          <p>No transactions to display</p>
+        <% else %>
+          <ul class="list-group list-group-flush">
+            <% filtered_transactions.each do |transaction| %>
+              <li class="list-group-item">
+                <%= transaction.crypto_type.capitalize %>: <%= transaction.amount %>
+              </li>
+            <% end %>
+          </ul>
         <% end %>
-      </tbody>
-    </table>
-  </div>
+      </div>
+    </div>
+  <% end %>
+
   <%= paginate @cryptocurrencies %>
 </div>
+
+
 

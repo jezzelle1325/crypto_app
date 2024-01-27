@@ -5,7 +5,7 @@
       <p><strong>Type:</strong> <%= @transaction.crypto_type.capitalize %></p>
       <p><strong>Amount:</strong> <%= @transaction.amount %></p>
       <p><strong>Cryptocurrency:</strong> <%= link_to @transaction.cryptocurrency.name, cryptocurrency_path(@transaction.cryptocurrency) %></p>
-      <p><strong>User:</strong> <%= link_to @transaction.user.name, user_path(@transaction.user) %></p>
+      <p><strong>User:</strong> <%= link_to @transaction.user.user, user_path(@transaction.user) %></p>
     </div>
   </div>
 </div>

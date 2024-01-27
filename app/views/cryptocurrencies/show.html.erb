@@ -3,17 +3,22 @@
   <p class="fs-5">Price: <span class="fw-bold"><%= @cryptocurrency.price %></span></p>
   <p class="fs-5">Market Cap: <span class="fw-bold"><%= @cryptocurrency.market_cap %></span></p>
 
-  <h2 class="mt-4">Transactions</h2>
+  <h2 class="mt-4">Transactions (Filter: <%= @filter || 'All' %>)</h2>
   <div class="row row-cols-1 row-cols-md-2 g-4">
-    <% @cryptocurrency.transactions.each do |transaction| %>
-      <div class="col">
-        <div class="card h-100">
-          <div class="card-body">
-            <h5 class="card-title"><%= transaction.crypto_type.capitalize %> Transaction</h5>
-            <p class="card-text">Amount: <%= transaction.amount %></p>
+    <% filtered_transactions = @cryptocurrency.transactions.select { |t| @filter.blank? || @filter == 'All' || t.crypto_type.downcase == @filter.downcase } %>
+    <% if filtered_transactions.empty? %>
+      <p>No transactions to display</p>
+    <% else %>
+      <% filtered_transactions.each do |transaction| %>
+        <div class="col">
+          <div class="card h-100">
+            <div class="card-body">
+              <h5 class="card-title"><%= transaction.crypto_type.capitalize %> Transaction</h5>
+              <p class="card-text">Amount: <%= transaction.amount %></p>
+            </div>
           </div>
         </div>
-      </div>
+      <% end %>
     <% end %>
   </div>
 </div>
